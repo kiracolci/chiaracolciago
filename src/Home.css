@@ -1,0 +1,402 @@
+/* =========================
+   GLOBAL
+   ========================= */
+
+   html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+
+   body {
+    margin: 0;
+    background: #fbfaf5;
+    color: #000;
+    font-family: Helvetica, Arial, sans-serif;
+    overflow-x: hidden;
+  }
+  
+  .home-root {
+    position: relative;
+    min-height: 100vh;
+  }
+  
+  /* =========================
+     HERO
+     ========================= */
+  
+  .hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .arc-text {
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 30px;
+    transform: rotate(-3deg);
+  }
+  
+  .hero-name {
+    font-size: 120px;
+    font-weight: 900;
+    margin: 0;
+    line-height: 1;
+  }
+  
+  .hero-sub {
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    max-width: 600px;
+  }
+  
+  .scroll-down {
+    margin-top: 60px;
+    font-size: 12px;
+    text-transform: lowercase;
+  }
+  
+  /* =========================
+     HINT
+     ========================= */
+  
+  .hint {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    font-size: 12px;
+    font-style: italic;
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: 10;
+  }
+  
+  /* =========================
+     PROJECT GALLERY
+     ========================= */
+  
+    /* ===== GALLERY WRAPPER ===== */
+.project-gallery {
+    width: 100vw;
+    height: 90vh;
+    display: flex;
+
+    align-items: center;
+  
+    overflow-x: hidden;   /* prevents page horizontal scroll */
+    overflow-y: visible;  /* allows hover grow */
+
+    min-height: 90vh;        /* ← more vertical space */
+  padding: 10rem 0;      /* breathing space top/bottom */
+    overflow-y: visible;   
+      /* ← IMPORTANT */
+
+  }
+  
+  /* ===== TRACK ===== */
+  .gallery-track {
+    display: flex;
+    gap: 0.3rem;
+    align-items: center;
+  
+    overflow-x: auto;
+    overflow-y: visible;
+  
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+
+  }
+  
+  .gallery-track::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* ===== ITEM (A4 POSTER) ===== */
+  .gallery-item {
+    flex: 0 0 auto;
+    width: 240px;
+    aspect-ratio: 1 / 1.414;   /* A4 vertical */
+    background: #fff;
+      cursor: pointer;
+    transform-origin: center center;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    overflow: visible;   /* REQUIRED for scale() */
+  position: relative;
+  }
+  
+  /* ===== IMAGE ===== */
+  .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  /* ===== HOVER EFFECT ===== */
+  .gallery-item:hover {
+    transform: rotate(0deg) scale(1.12);
+    z-index: 10;
+  }
+
+  /* ===== DYNAMIC ROTATION ===== */
+/* ===== BASE ROTATION VAR ===== */
+.gallery-item {
+    --tilt: 0deg;
+  }
+
+  /* Alternating tilt */
+.gallery-item:nth-child(odd) {
+    --tilt: -2deg;
+  }
+  
+  .gallery-item:nth-child(even) {
+    --tilt: 2deg;
+  }
+
+
+.gallery-overlay {
+    position: absolute;
+    inset: 0;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 16px;
+  
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0)
+    );
+  
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  /* show on hover */
+  .gallery-item:hover .gallery-overlay {
+    opacity: 1;
+  }
+  
+  /* title */
+  .gallery-overlay h3 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+    letter-spacing: 0.5px;
+  }
+  
+  /* category */
+  .gallery-overlay span {
+    font-size: 11px;
+    opacity: 0.8;
+    color: white;
+    text-transform: lowercase;
+  }
+  
+  
+  /* ===== CENTER-FOCUSED DEPTH EFFECT ===== */
+
+
+  
+  /* CENTER IMAGE */
+  /* CENTER */
+.gallery-item.center {
+    transform: scale(1.15) rotate(var(--tilt));
+    opacity: 1;
+    z-index: 3;
+  }
+  
+  /* NEAR */
+  .gallery-item.near {
+    transform: scale(0.95) rotate(var(--tilt));
+    opacity: 0.85;
+    z-index: 2;
+  }
+  
+  /* FAR */
+  .gallery-item.far {
+    transform: scale(0.85) rotate(var(--tilt));
+    opacity: 0.6;
+    z-index: 1;
+  }
+  
+  
+  /* HOVER STILL WORKS */
+  .gallery-item:hover {
+    transform: scale(1.18) rotate(0deg);
+    z-index: 10;
+  }
+  
+  
+  
+  /* =========================
+     POPUP OVERLAY
+     ========================= */
+  
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  /* =========================
+     POPUP
+     ========================= */
+  
+  .popup {
+    background: #fff;
+    width: 90vw;
+    max-width: 1200px;
+    height: 70%;
+    display: flex;
+    gap: 40px;
+    padding: 40px;
+  }
+  
+  .popup-left {
+    width: 35%;
+  }
+  
+  .popup-left h2 {
+    margin-bottom: 20px;
+  }
+  
+  /* =========================
+     POPUP RIGHT (A4 VIEW)
+     ========================= */
+  
+  .popup-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+  }
+  
+  /* A4 container (mask) */
+  .page {
+    width: 720px;
+    height: 510px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  
+    overflow: hidden;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+  }
+  
+  /* Horizontal image */
+  .img-horizontal {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Two vertical images */
+  .img-vertical {
+    width: 48%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* =========================
+     NAVIGATION ARROWS
+     ========================= */
+  
+  .finder-nav {
+    display: flex;
+    gap: 24px;
+  }
+  
+  .finder-nav button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    opacity: 0.5;
+    cursor: pointer;
+  }
+  
+  .finder-nav button:hover {
+    opacity: 1;
+  }
+  
+  .finder-nav button:disabled {
+    opacity: 0.2;
+    cursor: default;
+  }
+  
+  /* =========================
+     THUMBNAIL STRIP
+     ========================= */
+  
+  .finder-strip {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    width: 420px;
+  }
+  
+  .finder-thumb {
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    cursor: pointer;
+    opacity: 0.45;
+    transition: opacity 0.2s ease;
+  }
+  
+  .finder-thumb:hover {
+    opacity: 0.75;
+  }
+  
+  .finder-thumb.active {
+    opacity: 1;
+
+ transform: rotate(0deg) scale(1.08);
+    
+  }
+  
+  .finder-thumb img {
+    height: 42px;
+    object-fit: cover;
+  }
+  
+  /* =========================
+     FLOWERS
+     ========================= */
+  
+  .flower {
+    position: absolute;
+    width: 400px;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+  
+  /* ===== FIX GALLERY HORIZONTAL SCROLL ===== */
+  .gallery-wrapper {
+    width: 100vw;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+    overflow-y: visible;  /* allow hover scale */
+    margin-bottom: 100px;   /* ← ADD THIS */
+
+
+    
+  }
