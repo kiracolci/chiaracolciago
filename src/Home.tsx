@@ -17,6 +17,8 @@ const projects = [
     id: 2,
     type: "Website develpment",
     title: "La scuoletta",
+    link: "https://www.lascuoletta.it/", // 👈 add this
+    popupImage: "/4p.png",   // 👈 ONE CANVA IMAGE
     description:
       "Small sculptural objects and playful prototypes that explore form, character, and storytelling.",
     cover: "/2.png",
@@ -36,6 +38,7 @@ const projects = [
     id: 4,
     title: "The hub",
     type: "event",
+    link: "https://www.vaxjobladet.se/2024-05-22/de-efterlyser-fler-motesplatser-pa-campus-i-vaxjo/", // 👈 add this
     popupImage: "/3p.png",   // 👈 ONE CANVA IMAGE
     description:
       "A hands-on exploration of material, repair, and experimentation. Focused on learning by doing and working directly with physical constraints.",
@@ -65,6 +68,8 @@ const projects = [
     id: 7,
     title: "Crafting community",
     type: "social change project",
+    popupImage: "/5p.png",   // 👈 ONE CANVA IMAGE
+
     description:
       "A hands-on exploration of material, repair, and experimentation. Focused on learning by doing and working directly with physical constraints.",
     cover: "/7.png",
@@ -342,12 +347,27 @@ if (activeProject.startImage) {
     >
       {/* ✅ IMAGE-ONLY POPUP */}
       {activeProject.popupImage ? (
-        <img
-          src={activeProject.popupImage}
-          alt={activeProject.title}
-          className="popup-full-image"
-        />
-      ) : (
+  activeProject.link ? (
+    <a
+      href={activeProject.link}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img
+        src={activeProject.popupImage}
+        alt={activeProject.title}
+        className="popup-full-image"
+      />
+    </a>
+  ) : (
+    <img
+      src={activeProject.popupImage}
+      alt={activeProject.title}
+      className="popup-full-image"
+    />
+  )
+) : (
+
         /* ⬅️ fallback (if you ever want text-based projects again) */
         <>
           <div className="popup-left">
