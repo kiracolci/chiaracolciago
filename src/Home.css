@@ -35,23 +35,6 @@
   }
   
 
-   .home-root::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 8;               /* ✅ MUST be 0 */
-  
-    width: 100%;
-    height: 200px;
-  
-    background-image: url("/bott.png");
-    background-repeat: repeat-x;
-    background-size: auto 100%;
-    background-position: bottom center;
-  
-    pointer-events: none;
-    z-index: 0;
-  }
   
   
   
@@ -89,11 +72,36 @@
     max-width: 600px;
   }
   
-  .scroll-down {
+  /* =========================
+   SCROLL INDICATOR
+   ========================= */
+
+.scroll-down {
     margin-top: 60px;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
     font-size: 12px;
     text-transform: lowercase;
+    letter-spacing: 1px;
   }
+  
+  .scroll-arrow {
+    margin-top: 10px;
+    font-size: 18px;
+  
+    animation: bounceArrow 1.6s ease-in-out infinite;
+  }
+  
+  /* Smooth floating animation */
+  @keyframes bounceArrow {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(8px); }
+    100% { transform: translateY(0px); }
+  }
+  
   
   /* =========================
      HINT
@@ -124,8 +132,6 @@
   
     overflow-x: hidden;   /* prevents page horizontal scroll */
     overflow-y: visible;  /* allows hover grow */
-
-    min-height: 90vh;        /* ← more vertical space */
     padding: 4rem 0;
     overflow-y: visible;   
       /* ← IMPORTANT */
@@ -468,5 +474,30 @@
     display: block;
   
     background: #fff;
+  }
+  
+  /* =========================
+   FOOTER
+   ========================= */
+
+.site-footer {
+    position: relative;
+    z-index: 2; /* above bottom decoration */
+  
+    text-align: center;
+    padding: 3rem 0 2rem 0; /* extra bottom space for decoration */
+  
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  
+  .site-footer a {
+    color: black;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+  }
+  
+  .site-footer a:hover {
+    opacity: 0.6;
   }
   

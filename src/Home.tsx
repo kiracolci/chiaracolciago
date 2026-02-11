@@ -36,6 +36,7 @@ const projects = [
     id: 4,
     title: "The hub",
     type: "event",
+    popupImage: "/3p.png",   // 👈 ONE CANVA IMAGE
     description:
       "A hands-on exploration of material, repair, and experimentation. Focused on learning by doing and working directly with physical constraints.",
     cover: "/4.png",
@@ -287,9 +288,10 @@ if (activeProject.startImage) {
         </p>
 
         <div className="scroll-down">
-          my projects
-          <span>↓</span>
-        </div>
+  <span className="scroll-text">my projects</span>
+  <span className="scroll-arrow">↓</span>
+</div>
+
       </section>
 
       {/* PROJECT GRID */}
@@ -374,6 +376,15 @@ if (activeProject.startImage) {
     </div>
   </div>
 )}
+
+
+<footer className="site-footer">
+    <p>Email me ;)</p>
+  <a href="mailto:kiracolci@gmail.com">
+    kiracolci@gmail.com
+  </a>
+</footer>
+
 
 
 
