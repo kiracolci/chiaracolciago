@@ -301,15 +301,7 @@
      POPUP
      ========================= */
   
-  .popup {
-    background: #fff;
-    width: 90vw;
-    max-width: 1200px;
-    height: 70%;
-    display: flex;
-    gap: 40px;
-    padding: 40px;
-  }
+  
   
   .popup-left {
     width: 35%;
@@ -505,4 +497,36 @@
   .popup-full-image {
     cursor: pointer;
   }
+  
+  .popup-image-only {
+    background: transparent;
+    padding: 0;
+    width: auto;
+    height: auto;
+  
+    max-width: 95vw;
+    max-height: none;
+  
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .popup-full-image {
+    width: 100%;
+    height: auto;
+  
+    max-width: 100%;
+    max-height: none;
+  
+    display: block;
+    object-fit: contain;
+  }
+  
+  @media (max-width: 768px) {
+    .popup-full-image {
+      width: 95vw;
+    }
+  }
+  
   

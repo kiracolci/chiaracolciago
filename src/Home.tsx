@@ -2,24 +2,14 @@ import { useEffect, useState, useRef } from "react";
 import "./Home.css";
 
 const projects = [
-    {
-        id: 1,
-        title: "not cow burgers",
-        type: "website development",
-        description:
-          "A hands-on exploration of material, repair, and experimentation. Focused on learning by doing and working directly with physical constraints.",
-        cover: "/6.png",
-        
-        images: ["/1/1.jpg", "/1/2.jpg", "/1/3.jpg"],
-      },
 
   {
     id: 2,
     type: "Website develpment",
     title: "La scuoletta",
     link: "https://www.lascuoletta.it/", // 👈 add this
-    popupImage: "/4p.png",   // 👈 ONE CANVA IMAGE
-    description:
+    popupDesktop: "/4p.png",
+    popupMobile: "/4m.png",     description:
       "Small sculptural objects and playful prototypes that explore form, character, and storytelling.",
     cover: "/2.png",
     images: ["/2/1.jpg", "/2/2.jpg", "/2/3.jpg"],
@@ -28,8 +18,8 @@ const projects = [
     id: 3,
     title: "I hope therefore I do",
     type: "Exhibition - event",
-    popupImage: "/2p.png",   // 👈 ONE CANVA IMAGE
-    description:
+    popupDesktop: "/2p.png",
+    popupMobile: "/2m.png",       description:
       "Colorful compositions and tactile experiments combining paper, texture, and composition.",
     cover: "/3.png",
     images: ["/3/1.jpg", "/3/2.jpg", "/3/3.jpg"],
@@ -39,8 +29,8 @@ const projects = [
     title: "The hub",
     type: "event",
     link: "https://www.vaxjobladet.se/2024-05-22/de-efterlyser-fler-motesplatser-pa-campus-i-vaxjo/", // 👈 add this
-    popupImage: "/3p.png",   // 👈 ONE CANVA IMAGE
-    description:
+    popupDesktop: "/3p.png",
+    popupMobile: "/3m.png",      description:
       "A hands-on exploration of material, repair, and experimentation. Focused on learning by doing and working directly with physical constraints.",
     cover: "/4.png",
     images: ["/1/1.jpg", "/1/2.jpg", "/1/3.jpg"],
@@ -52,23 +42,16 @@ const projects = [
     type: "exhibition - social change project",
     description:"",
     cover: "/1.png",
-    popupImage: "/1p.png",   // 👈 ONE CANVA IMAGE
-    images: [
-      "/1/1.png",
-      "/1/2.png",
-      "/1/3.png",
-      "/1/4.png",
-      "/1/5.png",
-      "/1/6.png",
-      "/1/7.png",
-    ],
+    popupDesktop: "/1p.png",
+    popupMobile: "/1m.png",    
   },
 
   {
     id: 7,
     title: "Crafting community",
     type: "social change project",
-    popupImage: "/5p.png",   // 👈 ONE CANVA IMAGE
+    popupDesktop: "/5p.png",
+    popupMobile: "/5m.png",   // 👈 ONE CANVA IMAGE
 
     description:
       "A hands-on exploration of material, repair, and experimentation. Focused on learning by doing and working directly with physical constraints.",
@@ -76,23 +59,21 @@ const projects = [
     images: ["/1/1.jpg", "/1/2.jpg", "/1/3.jpg"],
     
   },
-  {
-    id: 8,
-    title: "Period Week",
-    type: "event",
-    description:
-      "A hands-on exploration of material, repair, and experimentation. Focused on learning by doing and working directly with physical constraints.",
-    cover: "/8.png",
-    images: ["/1/1.jpg", "/1/2.jpg", "/1/3.jpg"],
-  },
+
   {
     id: 5,
+    popupDesktop: "/6p.png",
+    popupMobile: "/6m.png",      link: "https://www.lucastargallery.com/", // 👈 add this    // 👈 ONE CANVA IMAGE
     title: "Luca stars",
     type: "webside development",
     description:
       "A hands-on exploration of material, repair, and experimentation. Focused on learning by doing and working directly with physical constraints.",
     cover: "/5.png",
     images: ["/1/1.jpg", "/1/2.jpg", "/1/3.jpg"],
+  },
+  {
+    id: 8,
+    cover: "/8.png",
   },
 ];
 
@@ -346,7 +327,40 @@ if (activeProject.startImage) {
       onClick={(e) => e.stopPropagation()}
     >
       {/* ✅ IMAGE-ONLY POPUP */}
-      {activeProject.popupImage ? (
+      {/* ✅ IMAGE-ONLY POPUP */}
+{activeProject.popupDesktop && activeProject.popupMobile ? (
+  activeProject.link ? (
+    <a
+      href={activeProject.link}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <picture>
+        <source
+          media="(max-width: 768px)"
+          srcSet={activeProject.popupMobile}
+        />
+        <img
+          src={activeProject.popupDesktop}
+          alt={activeProject.title}
+          className="popup-full-image"
+        />
+      </picture>
+    </a>
+  ) : (
+    <picture>
+      <source
+        media="(max-width: 768px)"
+        srcSet={activeProject.popupMobile}
+      />
+      <img
+        src={activeProject.popupDesktop}
+        alt={activeProject.title}
+        className="popup-full-image"
+      />
+    </picture>
+  )
+) : activeProject.popupImage ? (
   activeProject.link ? (
     <a
       href={activeProject.link}
